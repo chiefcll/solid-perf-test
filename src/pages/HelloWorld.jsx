@@ -12,7 +12,7 @@ const HelloWorld = () => {
   const handleTPress = () => {
     const _blocks = [...blocks()];
 
-    for (let step = 0; step < 50; step++) {
+    for (let step = 0; step < 100; step++) {
       _blocks.push({
         width: random(50, 100),
         height: random(50, 100),
