@@ -1,5 +1,5 @@
 import { Text, View, hexColor } from '@lightningjs/solid';
-import { For, createSignal } from 'solid-js';
+import { Index, createSignal } from 'solid-js';
 
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -10,16 +10,18 @@ const HelloWorld = () => {
   let blockContainer;
 
   const handleTPress = () => {
-    const _blocks = [...blocks()];
+    const _blocks = [];
 
-    for (let step = 0; step < 100; step++) {
+    // To tear down and recreate uncomment next line
+    //setBlocks([]);
+
+    for (let step = 0; step < 1000; step++) {
       _blocks.push({
         width: random(50, 100),
         height: random(50, 100),
         x: random(0, WIDTH),
         y: random(0, HEIGHT),
         borderRadius: random(0, 50),
-        transition: { x: { duration: 250 } },
         color: hexColor(generateRandomHexColor())
       });
     }
@@ -27,7 +29,7 @@ const HelloWorld = () => {
     setBlocks(_blocks);
   };
 
-  setTimeout(() => {
+  setInterval(() => {
     handleTPress();
   }, 2000);
 
@@ -77,7 +79,7 @@ const HelloWorld = () => {
         </Text> */}
       </View>
       <View ref={blockContainer}>
-        <For each={blocks()}>{(props) => <Block {...props} />}</For>
+        <Index each={blocks()}>{(props) => <Block {...props} />}</Index>
       </View>
     </View>
   );
