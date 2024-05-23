@@ -13,7 +13,7 @@ const HelloWorld = () => {
     const _blocks = [];
 
     // To tear down and recreate uncomment next line
-    //setBlocks([]);
+    // setBlocks([]);
 
     for (let step = 0; step < 1000; step++) {
       _blocks.push({
@@ -78,9 +78,11 @@ const HelloWorld = () => {
           Count: {blocks().length}
         </Text> */}
       </View>
-      <View ref={blockContainer}>
-        <Index each={blocks()}>{(props) => <Block {...props} />}</Index>
-      </View>
+      <Show when={blocks().length > 0}>
+        <View ref={blockContainer}>
+            <Index each={blocks()}>{(props) => <Block {...props} />}</Index>
+        </View>
+      </Show>
     </View>
   );
 };
